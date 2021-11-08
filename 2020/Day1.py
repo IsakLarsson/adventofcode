@@ -3,9 +3,12 @@ with open('Day1Input.txt') as f:
 	
 for index in range(0,len(lines)):
 	firstNumber = int(lines[index])
-	for number in range(index, len(lines)):
-		secondNumber = int(lines[number])
-		if firstNumber + secondNumber== 2020:
-			print(firstNumber, secondNumber, firstNumber*secondNumber)
+	for secondIndex in range(index, len(lines)):
+		secondNumber = int(lines[secondIndex])
+		for thirdIndex in range(secondIndex, len(lines)):
+			thirdNumber = int(lines[thirdIndex])
+			if firstNumber + secondNumber + thirdNumber == 2020:
+				print(firstNumber, secondNumber, thirdNumber, firstNumber*secondNumber*thirdNumber)
+
 
 f.close()
