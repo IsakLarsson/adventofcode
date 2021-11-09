@@ -7,20 +7,23 @@ print(rowLength)
 
 print(rows[0][30]) #zero indexed and 30 is the last index
 
+xStep = 1 #steps in X diection
+yStep = 2 #steps in Y direction
+
 treeCount = 0
 xCoordinate = 0
-def step(x):
-	if x <=rowLength-3:
-		x+=3
+def step(x, stepLength):
+	if x <=rowLength-stepLength:
+		x+=stepLength
 	else:
-		x=2-(rowLength-x)
+		x=(stepLength-1)-(rowLength-x)
 	return x
 
 for rowNumber in range(1, len(rows)):
-	xCoordinate = step(xCoordinate)
-	print(rowNumber,xCoordinate, rows[rowNumber][xCoordinate])
-	# print(rows[rowNumber][xCoordinate])
-	if rows[rowNumber][xCoordinate] == '#':
-		treeCount += 1
+	if rowNumber % 2 == 0 and rowNumber != 0:
+		xCoordinate = step(xCoordinate,xStep)
+		print(rowNumber,xCoordinate, rows[rowNumber][xCoordinate])
+		if rows[rowNumber][xCoordinate] == '#':
+			treeCount += 1
 	
 print(treeCount)
