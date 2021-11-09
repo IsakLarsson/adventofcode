@@ -18,8 +18,8 @@ def part2():
 		policy, password = line.split(':')
 		firstPos, upperAndLetter = policy.split('-')
 		secondPos, letter = upperAndLetter.split()
-		print(password.find(letter), letter, password)
-		# if (password.find(letter)+1 == int(firstPos) and password.find(letter)+1 != int(secondPos)) or (password.find(letter)+1 == int(secondPos) and password.find(letter)+1 != int(firstPos)):
+		print(password.find(letter), letter, password)jk
+		# if (password.find(letter) == int(firstPos) and password.find(letter) != int(secondPos)) or (password.find(letter)+1 == int(secondPos) and password.find(letter)+1 != int(firstPos)):
 		# 	print(firstPos,secondPos,letter,password)
 		# 	validCounter+=1
 
