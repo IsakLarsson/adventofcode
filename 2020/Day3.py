@@ -8,7 +8,7 @@ print(rowLength)
 print(rows[0][30]) #zero indexed and 30 is the last index
 
 treeCount = 0
-xCoordinate = 1
+xCoordinate = 0
 def step(x):
 	if x <=rowLength-3:
 		x+=3
