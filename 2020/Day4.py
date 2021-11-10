@@ -2,11 +2,7 @@
 with open('2020/inputs/day4input.txt') as f:
 	content = f.readlines()
 
-#if 2 \n's are in a row then there is a new line
-# print(content)
-
 passports = []
-
 requiredFields = {'eyr', 'hgt','hcl','pid', 'byr', 'iyr', 'ecl'} 
 
 validPasstports = 0
