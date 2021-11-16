@@ -6,16 +6,35 @@ with open('2020/inputs/day6input.txt') as f:
 def split(word):
     return [char for char in word]
 
-answerSet = set()
-total = 0
-for line in content:
-    line = line.strip()
-    if line == '':
-        total += len(answerSet)
-        answerSet.clear()
-    else:
-        line = split(line)
-        [answerSet.add(x) for x in line]
+def part1(content):
+    answerSet = set()
+    total = 0
+    for line in content:
+        line = line.strip()
+        if line == '':
+            total += len(answerSet)
+            answerSet.clear()
+        else:
+            line = split(line)
+            [answerSet.add(x) for x in line]
 
-total += len(answerSet)
-print(total)
+    total += len(answerSet)
+    print(total)
+
+def part2(content):
+    answerSet = set()
+    total = 0
+    for line in content:
+        line = line.strip()
+        if line == '':
+            total += len(answerSet)
+            answerSet.clear()
+        else:
+            line = split(line)
+            [answerSet.add(x) for x in line]
+
+    total += len(answerSet)
+    print(total)
+
+part1(content)
+
