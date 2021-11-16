@@ -18,5 +18,4 @@ for line in content:
         [answerSet.add(x) for x in line]
 
 total += len(answerSet)
-
 print(total)
