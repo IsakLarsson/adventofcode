@@ -32,9 +32,10 @@ def part2(content):
         else:
             line = split(line)
             [answerSet.add(x) for x in line]
-
+            
     total += len(answerSet)
     print(total)
 
 part1(content)
+part2(content)
 
