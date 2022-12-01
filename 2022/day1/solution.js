@@ -12,7 +12,6 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
         if (element === '') {
             //new elf
             if (total > highestTotal) {
-                bestElf = index
                 highestTotal = total
             }
             total = 0
