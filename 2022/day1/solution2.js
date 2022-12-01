@@ -7,9 +7,8 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
     split = data.split('\n')
     let total = 0
     let elvesTotals = []
-    let highestTotal = 0
 
-    split.forEach((element, index) => {
+    split.forEach((element) => {
         if (element === '') {
             elvesTotals.push(total)
             total = 0
@@ -17,6 +16,11 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
         }
         total += parseInt(element)
     })
-    elvesTotals.sort()
-    console.log(elvesTotals.slice(-3))
+    elvesTotals.sort(compare)
+    console.log(
+        elvesTotals.slice(-3).reduce((total, element) => (total += element))
+    )
 })
+function compare(a, b) {
+    return a < b ? -1 : 0
+}

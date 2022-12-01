@@ -6,7 +6,6 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
     }
     split = data.split('\n')
     let total = 0
-    let bestElf = 0
     let highestTotal = 0
 
     split.forEach((element, index) => {
