@@ -10,6 +10,7 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
 
     split.forEach((element) => {
         if (element === '') {
+            // new elf
             elvesTotals.push(total)
             total = 0
             return

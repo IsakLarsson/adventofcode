@@ -10,7 +10,7 @@ fs.readFile('./input.txt', 'utf8', (err, data) => {
 
     split.forEach((element, index) => {
         if (element === '') {
-            //if total better than best total
+            //new elf
             if (total > highestTotal) {
                 bestElf = index
                 highestTotal = total
