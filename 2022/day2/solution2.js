@@ -30,9 +30,9 @@ const checkWin = (player, opponent) => {
 }
 const turns = fs.readFileSync('./input.txt', { encoding: 'utf8' }).split('\n')
 
-let totalScore = 0
-turns.forEach((turn) => {
-    const moves = turn.split(' ')
-    totalScore += checkWin(moves[1], moves[0])
-})
+const totalScore = turns.reduce(
+    (acc, turn) => acc + checkWin(turn.split(' ')[1], turn.split(' ')[0]),
+    0
+)
+
 console.log(totalScore)
