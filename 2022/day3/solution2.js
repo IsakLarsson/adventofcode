@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { CLIENT_RENEG_LIMIT } = require('tls')
 const rucksacks = fs
     .readFileSync('./input.txt', { encoding: 'utf8' })
     .split('\n')
