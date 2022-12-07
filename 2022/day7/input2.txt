@@ -1,0 +1,11 @@
+$ cd /
+$ ls
+dir a
+1 a.txt
+$ cd a
+$ ls
+dir a
+2 a.txt
+$ cd a
+$ ls
+3 a.txt
