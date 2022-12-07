@@ -14,18 +14,11 @@ const cd = (directory) => {
     }
 }
 
-const ls = () => {
-    //ls command
-    // fileSystem['root'] = { name: 'root', subDirectories: [], size: 0 }
-}
-
 const command = (inputCommand, arg) => {
+    //ls does nothing
     switch (inputCommand) {
         case 'cd':
             cd(arg)
-            break
-        case 'ls':
-            ls()
             break
         default:
             break
@@ -81,33 +74,12 @@ const getSizeOfDirectory = (directory) => {
     }
     return totalSize
 }
-// console.log(fileSystem)
-console.log(getSizeOfDirectory(fileSystem))
-let answer = 0
-
-const traverse = (fileSystem) => {
-    let sum = 0
-    for (const directory in fileSystem) {
-        if (directory === '__parent') {
-            continue
-        }
-        const entry = fileSystem[directory]
-        if (typeof entry === 'object') {
-            sum = getSizeOfDirectory(entry)
-            if (sum <= 100000) {
-                answer += sum
-            }
-            traverse(directory)
-        }
-    }
-}
-traverse(fileSystem)
-console.log(answer)
+getSizeOfDirectory(fileSystem)
 console.log(
     sizesSmallerThan100k.reduce((acc, curr, index) => {
-        if ((index <= sizesSmallerThan100k.length / 2) - 1) {
+        if (index <= sizesSmallerThan100k.length) {
             acc += curr
         }
         return acc
     })
-) //tired of fucking with the recursion shit
+)
