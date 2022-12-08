@@ -1,3 +1,3 @@
-# adventofcode
-A repo where i solve different days of the advent of code for fun
+# Avent of code 🎅🎄
+A repo where i attempt solve different days of the advent of code
 https://adventofcode.com/
