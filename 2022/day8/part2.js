@@ -49,10 +49,10 @@ const checkWest = (row, column, currentTreeHeight) => {
 for (let row = 1; row < height - 1; row++) {
     for (let column = 1; column < width - 1; column++) {
         const currentTree = parseInt(treeLines[row].at(column))
-        let distanceNorth = checkNorth(row, column, currentTree)
-        let distanceSouth = checkSouth(row, column, currentTree)
-        let distanceEast = checkEast(row, column, currentTree)
-        let distanceWest = checkWest(row, column, currentTree)
+        const distanceNorth = checkNorth(row, column, currentTree)
+        const distanceSouth = checkSouth(row, column, currentTree)
+        const distanceEast = checkEast(row, column, currentTree)
+        const distanceWest = checkWest(row, column, currentTree)
         const scenicScore =
             distanceEast * distanceWest * distanceSouth * distanceNorth
         if (scenicScore > highestScore) {
