@@ -3,7 +3,7 @@ const moves = fs.readFileSync('./input.txt', 'utf8').trim().split('\n')
 /*
  * This is a general solution, it works for any number of knots
  */
-const NR_KNOTS = 2
+const NR_KNOTS = 10
 const visitedPositions = []
 visitedPositions.push({ x: 0, y: 0 })
 class Knot {
