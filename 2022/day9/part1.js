@@ -1,8 +1,10 @@
 const fs = require('fs')
 const moves = fs.readFileSync('./input.txt', 'utf8').trim().split('\n')
-// const moves = fs.readFileSync('./input2.txt', 'utf8').trim().split('\n')
 
-const visitedPositions = []
+/*
+DO NOT judge me by this code, if you want a better solution, check my part2 which works for 
+any ammount of knots
+*/
 
 let currentPosition = {
     head: {
@@ -14,6 +16,8 @@ let currentPosition = {
         y: 0,
     },
 }
+
+const visitedPositions = []
 visitedPositions.push({ x: 0, y: 0 })
 
 const isPositionVisited = (newPosition) => {
@@ -99,6 +103,5 @@ const moveRope = (direction, ammount) => {
 moves.forEach((move) => {
     const [direction, ammount] = move.split(' ')
     moveRope(direction, parseInt(ammount))
-    //if the distance between the head and the tail becomes more than 2, move the tail to the last position of the head
 })
 console.log(visitedPositions.length)
