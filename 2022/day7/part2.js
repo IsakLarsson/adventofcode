@@ -1,6 +1,9 @@
 const fs = require('fs')
 const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
+// const lines = fs.readFileSync('./input3.txt', 'utf8').split('\n')
 
+const MAX_STORAGE = 70000000
+const NEEDED_STORAGE = 30000000
 const fileSystem = { size: 0 }
 let currentDir = fileSystem
 
@@ -53,7 +56,7 @@ lines.forEach((line) => {
 The code was fine up until here, now the shitcode starts
 */
 
-const sizesSmallerThan100k = []
+const directorySizes = []
 
 const getSizeOfDirectory = (directory) => {
     let totalSize = 0
@@ -69,11 +72,16 @@ const getSizeOfDirectory = (directory) => {
             totalSize += entry
         }
     }
-    if (totalSize <= 100000) {
-        sizesSmallerThan100k.push(totalSize)
-    }
+    directorySizes.push(totalSize)
     return totalSize
 }
-
-getSizeOfDirectory(fileSystem)
-console.log(sizesSmallerThan100k.reduce((acc, curr, index) => (acc += curr)))
+const availableStorage = MAX_STORAGE - getSizeOfDirectory(fileSystem) //disgusting sideeffects
+const storageToFree = NEEDED_STORAGE - availableStorage
+console.log(directorySizes, availableStorage, storageToFree)
+let smallestFreeableStorage = directorySizes.at(-1)
+directorySizes.forEach((directory) => {
+    if (directory >= storageToFree && directory <= smallestFreeableStorage) {
+        smallestFreeableStorage = directory
+    }
+})
+console.log(smallestFreeableStorage)
