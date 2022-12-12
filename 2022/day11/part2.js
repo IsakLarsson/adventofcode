@@ -5,6 +5,7 @@ const NR_OF_ROUNDS = 10000
 class Monkey {
     items = []
     inspections = 0
+    lowestMultiple = 11 * 5 * 19 * 13 * 7 * 17 * 2 * 3
     constructor(startingItems, operation, operationValue, testValue, throwsTo) {
         this.items = startingItems
         this.operationValue = operationValue
@@ -22,8 +23,7 @@ class Monkey {
         } else if (this.operation === '+') {
             inspectedItem += parseInt(this.operationValue)
         }
-        const lowestMultiple = 11 * 5 * 19 * 13 * 7 * 17 * 2 * 3
-        inspectedItem = inspectedItem % lowestMultiple
+        inspectedItem = inspectedItem % this.lowestMultiple
         this.items[0] = inspectedItem
         this.inspections++
     }
@@ -40,7 +40,6 @@ class Monkey {
 
 const monkeyList = []
 const findMonkeys = () => {
-    let monkeyNr = 0
     for (let lineNr = 0; lineNr < input.length; lineNr += 7) {
         const startingItems = input[lineNr + 1]
             .split(':')[1]
