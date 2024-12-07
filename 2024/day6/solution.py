@@ -55,7 +55,6 @@ def rotate_guard(guard: str) -> str:
 def move_guard(
     matrix: list[list[str]], current_position: Tuple[int, int]
 ) -> Tuple[list[list[str]], Tuple[int, int]]:
-    new_matrix = matrix[:]
     (x, y) = current_position
     guard = char_at(matrix, current_position)
     if not is_wall_in_front(matrix, current_position):
@@ -66,32 +65,32 @@ def move_guard(
                 # ew
                 if next_move_is_out_of_bounds(matrix, new_pos):
                     return (matrix, (-1, -1))
-                new_matrix[new_pos[1]][new_pos[0]] = guard
-                new_matrix[y][x] = "X"
+                matrix[new_pos[1]][new_pos[0]] = guard
+                matrix[y][x] = "X"
             case ">":
                 new_pos = (x + 1, y)
                 if next_move_is_out_of_bounds(matrix, new_pos):
                     return (matrix, (-1, -1))
-                new_matrix[new_pos[1]][new_pos[0]] = guard
-                new_matrix[y][x] = "X"
+                matrix[new_pos[1]][new_pos[0]] = guard
+                matrix[y][x] = "X"
             case "v":
                 new_pos = (x, y + 1)
                 if next_move_is_out_of_bounds(matrix, new_pos):
                     return (matrix, (-1, -1))
-                new_matrix[new_pos[1]][new_pos[0]] = guard
-                new_matrix[y][x] = "X"
+                matrix[new_pos[1]][new_pos[0]] = guard
+                matrix[y][x] = "X"
             case "<":
                 new_pos = (x - 1, y)
                 if next_move_is_out_of_bounds(matrix, new_pos):
                     return (matrix, (-1, -1))
-                new_matrix[new_pos[1]][new_pos[0]] = guard
-                new_matrix[y][x] = "X"
+                matrix[new_pos[1]][new_pos[0]] = guard
+                matrix[y][x] = "X"
             case _:
                 return (matrix, (x, y))
-        return (new_matrix, new_pos)
+        return (matrix, new_pos)
 
-    new_matrix[y][x] = rotate_guard(guard)
-    return (new_matrix, (x, y))
+    matrix[y][x] = rotate_guard(guard)
+    return (matrix, (x, y))
 
 
 def print_matrix(matrix: list[list[str]]):
@@ -127,12 +126,13 @@ def part1():
     while not done:
         if current_position == (-1, -1):
             done = True
-            print_matrix(matrix)
             print(count_steps(matrix) + 1)  # count the last position as well
-
             break
+
+        print(current_position, end="\r")
         matrix, current_position = move_guard(matrix, current_position)
-        print(current_position)
+
+    print_matrix(matrix)
 
 
 part1()
