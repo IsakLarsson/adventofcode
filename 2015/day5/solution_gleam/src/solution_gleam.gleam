@@ -48,14 +48,10 @@ pub fn check_bad_strings(input: String) -> Result(String, Nil) {
 }
 
 fn check_string_nice(input: String) -> Bool {
-  case
-    contains_three_vowels(input)
-    |> result.try(contains_double(_))
-    |> result.try(check_bad_strings(_))
-  {
-    Ok(_) -> True
-    Error(_) -> False
-  }
+  contains_three_vowels(input)
+  |> result.try(contains_double(_))
+  |> result.try(check_bad_strings(_))
+  |> result.is_ok()
 }
 
 pub fn main() {
@@ -64,8 +60,7 @@ pub fn main() {
     Ok(content) -> {
       let strings = content |> string.split("\n")
       strings
-      |> list.filter(check_string_nice(_))
-      |> list.length()
+      |> list.count(fn(string) { check_string_nice(string) })
       |> int.to_string()
       |> io.println()
     }
