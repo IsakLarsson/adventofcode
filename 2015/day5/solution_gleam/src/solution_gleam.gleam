@@ -47,6 +47,18 @@ pub fn check_bad_strings(input: String) -> Result(String, Nil) {
   }
 }
 
+pub fn check_one_letter_between(input: String) -> Bool {
+  input
+  |> string.to_graphemes()
+  |> list.window(3)
+  |> list.any(fn(pair) {
+    case pair {
+      [a, b, c] if a == c && b != c && b != a -> True
+      _ -> False
+    }
+  })
+}
+
 fn check_string_nice(input: String) -> Bool {
   contains_three_vowels(input)
   |> result.try(contains_double(_))
@@ -59,6 +71,7 @@ pub fn main() {
   case input {
     Ok(content) -> {
       let strings = content |> string.split("\n")
+      //part1
       strings
       |> list.count(fn(string) { check_string_nice(string) })
       |> int.to_string()
