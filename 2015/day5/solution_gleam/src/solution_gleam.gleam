@@ -47,18 +47,6 @@ pub fn check_bad_strings(input: String) -> Result(String, Nil) {
   }
 }
 
-pub fn check_one_letter_between(input: String) -> Bool {
-  input
-  |> string.to_graphemes()
-  |> list.window(3)
-  |> list.any(fn(pair) {
-    case pair {
-      [a, b, c] if a == c && b != c && b != a -> True
-      _ -> False
-    }
-  })
-}
-
 fn check_string_nice(input: String) -> Bool {
   contains_three_vowels(input)
   |> result.try(contains_double(_))
@@ -68,14 +56,24 @@ fn check_string_nice(input: String) -> Bool {
 
 pub fn main() {
   let input = file.read("../input/input.txt")
+  let print_int = fn(c: Int) { c |> int.to_string() |> io.println() }
+
   case input {
     Ok(content) -> {
       let strings = content |> string.split("\n")
       //part1
       strings
-      |> list.count(fn(string) { check_string_nice(string) })
-      |> int.to_string()
-      |> io.println()
+      |> list.count(check_string_nice(_))
+      |> print_int()
+
+      //part 2
+      let assert Ok(rule1) = regex.from_string("(..).*\\1")
+      let assert Ok(rule2) = regex.from_string("(.).\\1")
+      strings
+      |> list.count(fn(string) {
+        regex.check(rule1, string) && regex.check(rule2, string)
+      })
+      |> print_int()
     }
     Error(_) -> panic as "Bad input file"
   }
